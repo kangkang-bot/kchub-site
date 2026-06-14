@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import CapabilityCard from '../components/CapabilityCard.astro';
+
+const groups = [
+  {
+    title: '调研 & 攻略生成',
+    items: [
+      { icon: '🔍', t: '主题调研', d: '"研究一下 RAG 和 Agent 的区别" → 一份结构化对比简报。', tags: ['Research'] },
+      { icon: '🧳', t: '旅游攻略', d: '目的地 + 天数 + 预算 + 偏好 → 5 天行程 / 餐厅 / 交通 / 注意事项。', tags: ['Travel'] },
+      { icon: '📊', t: '产品对比', d: '"iPhone 还是 Pixel / MacBook 还是 ThinkPad" → 对比表 + 短评。', tags: ['Compare'] },
+      { icon: '📰', t: '每日早报', d: 'GitHub Trending / 行业新闻 / 自定义信源 → 早上 7 点准时推送。', tags: ['Daily'] },
+    ],
+  },
+  {
+    title: '家庭数据中枢',
+    items: [
+      { icon: '📅', t: '日程与纪念日', d: '两个人的日程合并，纪念日自动提醒，往年同一天推荐回忆杀。', tags: ['Calendar'] },
+      { icon: '✅', t: '共享待办', d: '"换灯泡 / 加油 / 给 Chen 妈妈买生日礼物"——家事不留白。', tags: ['Todos'] },
+      { icon: '💰', t: '家庭账本', d: '记一笔、分类、月底看饼图。完全本地，不上云。', tags: ['Local'] },
+      { icon: '📚', t: '阅读 / 影视清单', d: '"想看 / 在看 / 看完"，附一句短评，能全文搜。', tags: ['List'] },
+    ],
+  },
+  {
+    title: '评论 & 修复闭环',
+    items: [
+      { icon: '💬', t: '侧栏评论', d: '在报告任何一段旁边加气泡评论，@ 一下对方，留言永久挂在原位置。', tags: ['Comments'] },
+      { icon: '🪄', t: '一键让 Agent 修', d: '看到不顺眼？点一下"重写这里"，Agent 回查上下文改稿。', tags: ['Self-heal'] },
+      { icon: '🕓', t: '版本轨迹', d: '每改一次都留快照，谁、什么时候、改了什么，一目了然。', tags: ['Git-like'] },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="能力"
+  description="KCHub 的完整能力地图——调研、家庭数据、评论修复，覆盖一个家的数字生活。"
+>
+  <Section
+    eyebrow="Capabilities"
+    title="KCHub 的能力地图"
+    subtitle="目前覆盖三大领域，每个能力都是可插拔的 Skill 或独立模块。"
+  >
+    <div class="mt-14 space-y-16">
+      {
+        groups.map((group) => (
+          <div>
+            <h3 class="text-sm font-semibold tracking-[0.2em] uppercase text-[color:var(--color-peach-500)] mb-6">
+              {group.title}
+            </h3>
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {group.items.map((c) => <CapabilityCard {...c} />)}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Coming soon"
+    title="正在路上的能力"
+    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
+  >
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 max-w-4xl mx-auto">
+      {
+        [
+          { t: '语音备忘录自动转写 + 摘要', d: '"录一段会议 / 想法"，回家就有结构化记录。' },
+          { t: '家庭相册智能分类', d: '按人物、场景、时间自动归类，留住每一刻。' },
+          { t: '可订阅的家庭 newsletter', d: '把生成的攻略简报定期发给爸妈 / 朋友。' },
+          { t: '插件市场', d: '我们写 Skills，也欢迎社区贡献。' },
+        ].map((c) => (
+          <div class="p-5 rounded-[var(--radius-md)] border border-dashed border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
+            <p class="text-sm font-semibold text-[color:var(--color-ink-300)] mb-1">{c.t}</p>
+            <p class="text-xs text-[color:var(--color-ink-50)] leading-relaxed">{c.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

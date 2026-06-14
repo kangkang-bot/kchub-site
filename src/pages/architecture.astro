@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+
+const layers = [
+  {
+    name: '客户端',
+    sub: '多端入口',
+    items: ['📱 微信小程序', '🌐 Web 网页', '💬 OpenClaw 机器人'],
+    color: 'peach',
+  },
+  {
+    name: '触发层',
+    sub: '任务入口',
+    items: ['小程序 API', 'Webhook 派单', 'OpenClaw 对话转任务'],
+    color: 'rose',
+  },
+  {
+    name: '家庭电脑',
+    sub: '执行环境',
+    items: ['Mac mini 常驻', 'OpenCode / Claude Code', 'Agent 编排器'],
+    color: 'peach',
+  },
+  {
+    name: 'Skills 工具集',
+    sub: '可复用的"做事方式"',
+    items: ['搜索 / 抓取', 'Markdown 写作', 'HTML 报告生成', '天气 / 财经 / 日历', '记忆 / 上下文'],
+    color: 'rose',
+  },
+  {
+    name: '数据与产出',
+    sub: '持久化 & 反馈',
+    items: ['本地 SQLite / 笔记库', 'HTML 报告静态托管', '评论与修复日志'],
+    color: 'peach',
+  },
+];
+---
+
+<BaseLayout
+  title="架构"
+  description="KCHub 的技术架构——从一句需求到一份报告，五层流水线。"
+>
+  <Section
+    eyebrow="Architecture"
+    title="KCHub 的五层架构"
+    subtitle="触发轻，执行重；每个 Skill 独立可换；数据留在家里。"
+  >
+    <div class="mt-14 max-w-4xl mx-auto space-y-4">
+      {
+        layers.map((layer, i) => (
+          <div
+            class="card-warm rounded-[var(--radius-lg)] p-5 sm:p-6 grid sm:grid-cols-[140px_1fr] gap-4 sm:gap-6 items-center"
+          >
+            <div>
+              <p class="text-xs font-mono text-[color:var(--color-peach-500)] mb-1">Layer {String(i + 1).padStart(2, '0')}</p>
+              <h3 class="text-lg font-semibold text-[color:var(--color-ink-300)]">{layer.name}</h3>
+              <p class="text-xs text-[color:var(--color-ink-50)] mt-0.5">{layer.sub}</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {layer.items.map((item) => (
+                <span class="text-sm px-3 py-1.5 rounded-full bg-[color:var(--color-cream-200)] text-[color:var(--color-ink-200)] border border-[color:var(--color-line-200)]">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Flow"
+    title="一份攻略是怎么从 0 到 1 的"
+    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
+  >
+    <div class="mt-10 max-w-4xl mx-auto">
+      <ol class="relative border-l-2 border-[color:var(--color-cream-400)] ml-3 space-y-8 pl-7">
+        {
+          [
+            { t: 'Kang 在小程序说"做一份京都 5 日攻略"', d: '小程序把任务 POST 到家庭电脑的 webhook 端点，附带 session、用户偏好、预算。' },
+            { t: '家庭电脑的 Agent 接到任务', d: '解析意图 → 拆解子任务（景点 / 交通 / 住宿 / 餐厅 / 天气）→ 选择要用的 Skills。' },
+            { t: 'Skills 并行执行', d: '搜索 Skill 拉资料，写作 Skill 起草，HTML Skill 套模板。各 Skill 之间用结构化数据通讯。' },
+            { t: 'HTML 报告生成', d: '渲染模板，注入数据，输出 kyoto-5-days.html，存到家庭电脑的静态目录。' },
+            { t: '推回客户端', d: '小程序 / Web 拿到链接，在阅读器里展示，右侧是侧栏评论区。' },
+            { t: 'Chen 评论 + 一键修复', d: '"Day3 走太多路" → 评论触发 Agent 改稿 → 报告版本 v2 推送 → 旧版存档。' },
+          ].map((step, i) => (
+            <li class="relative">
+              <span class="absolute -left-[39px] top-1 w-7 h-7 rounded-full grid place-items-center bg-gradient-to-br from-[color:var(--color-peach-400)] to-[color:var(--color-rose-400)] text-white text-xs font-semibold shadow-[var(--shadow-warm)]">
+                {i + 1}
+              </span>
+              <h3 class="font-semibold text-[color:var(--color-ink-300)] mb-1">{step.t}</h3>
+              <p class="text-sm text-[color:var(--color-ink-50)] leading-relaxed">{step.d}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </Section>
+
+  <Section eyebrow="Why this works" title="为什么这个架构对我们够用" align="center">
+    <div class="mt-10 max-w-3xl mx-auto grid gap-4 sm:grid-cols-2 text-left">
+      {
+        [
+          { t: 'Skill 是 Markdown', d: '和写文档一样写一个 Skill，AI 立刻能跑。可读、可版本控制、可分享。' },
+          { t: 'Agent 决定怎么用', d: '我们不写死流程，让 Agent 自己挑 Skill、自己拆任务。' },
+          { t: '本地优先', d: '数据都留家里那台 Mac mini，出门访问走加密通道。' },
+          { t: '失败可重试', d: '每个步骤都有上下文快照，出问题能回去重来。' },
+        ].map((b) => (
+          <div class="p-5 rounded-[var(--radius-md)] bg-[color:var(--color-cream-50)] border border-[color:var(--color-line-200)]">
+            <h3 class="font-semibold text-[color:var(--color-ink-300)] mb-1.5">{b.t}</h3>
+            <p class="text-sm text-[color:var(--color-ink-50)] leading-relaxed">{b.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

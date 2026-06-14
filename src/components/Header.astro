@@ -1,0 +1,104 @@
+---
+const { nav } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header
+  class="sticky top-0 z-40 backdrop-blur-md bg-[color:var(--color-cream-100)]/80 border-b border-[color:var(--color-line-200)]"
+>
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a
+      href="/"
+      class="flex items-center gap-2.5 group"
+      aria-label="KCHub 首页"
+    >
+      <span
+        class="w-9 h-9 rounded-[var(--radius-md)] bg-gradient-to-br from-[color:var(--color-peach-400)] to-[color:var(--color-rose-400)] grid place-items-center shadow-[var(--shadow-warm)] transition-transform group-hover:scale-105"
+      >
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11 L12 4 L20 11" />
+          <path d="M6 11 V19 H18 V11" />
+          <path d="M10 19 V14 H14 V19" />
+        </svg>
+      </span>
+      <span class="font-semibold text-[color:var(--color-ink-300)] text-lg tracking-tight">
+        KCHub
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1">
+      {
+        nav.map((item) => {
+          const itemPath = item.href.replace(/\/$/, '') || '/';
+          const active = itemPath === currentPath;
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3.5 py-2 rounded-[var(--radius-sm)] text-sm transition-colors',
+                active
+                  ? 'text-[color:var(--color-peach-500)] bg-[color:var(--color-cream-200)]'
+                  : 'text-[color:var(--color-ink-100)] hover:text-[color:var(--color-peach-500)] hover:bg-[color:var(--color-cream-200)]/60',
+              ]}
+              aria-current={active ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <a
+      href="/contact"
+      class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-[color:var(--color-ink-200)] text-[color:var(--color-cream-50)] hover:bg-[color:var(--color-peach-500)] transition-colors shadow-[var(--shadow-soft)]"
+    >
+      打个招呼
+      <span class="text-base leading-none">→</span>
+    </a>
+
+    <button
+      class="md:hidden p-2 rounded-[var(--radius-sm)] text-[color:var(--color-ink-100)]"
+      id="mobile-menu-trigger"
+      aria-label="菜单"
+    >
+      <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- 移动端菜单 -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-[color:var(--color-line-200)] bg-[color:var(--color-cream-100)]"
+  >
+    <nav class="max-w-6xl mx-auto px-5 py-3 flex flex-col">
+      {
+        nav.map((item) => {
+          const itemPath = item.href.replace(/\/$/, '') || '/';
+          const active = itemPath === currentPath;
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'py-2.5 px-3 rounded-[var(--radius-sm)] text-sm',
+                active
+                  ? 'text-[color:var(--color-peach-500)] bg-[color:var(--color-cream-200)]'
+                  : 'text-[color:var(--color-ink-100)]',
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  const trigger = document.getElementById('mobile-menu-trigger');
+  const menu = document.getElementById('mobile-menu');
+  trigger?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

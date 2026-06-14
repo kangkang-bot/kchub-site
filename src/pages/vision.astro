@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+
+const scenes = [
+  {
+    icon: '🌙',
+    title: '深夜研究欲',
+    scene: '躺在床上刷到「这玩意儿是啥」，再懒得开电脑。',
+    promise: 'OpenClaw 一句话，3 分钟生成一份能看完的简报。',
+  },
+  {
+    icon: '🧳',
+    title: '出门前攻略',
+    scene: '"下个月去 XX，预算 YY，帮我排一下"。',
+    promise: 'Agent 拉景点 / 交通 / 住宿 / 餐厅，输出可打印的 HTML 攻略。',
+  },
+  {
+    icon: '🎂',
+    title: '家庭记忆',
+    scene: '纪念日、生日、第一次约会、娃的第一张照片……',
+    promise: '一个能翻、能补、能搜索的家庭档案柜。',
+  },
+  {
+    icon: '🛒',
+    title: '产品调研',
+    scene: '"扫地机器人买哪款"、"这个 Saawo 工单系统要不要换"。',
+    promise: '对比表 + 评价聚合 + 我们家用过后的真实短评。',
+  },
+  {
+    icon: '💡',
+    title: '想法从不错过',
+    scene: '想到一句灵感、过两天忘了；和 Chen 争论哪家餐厅好吃。',
+    promise: 'KCHub 笔记 + 标签 + 提醒，让火花都留住。',
+  },
+  {
+    icon: '🧑‍💻',
+    title: '跟进行业',
+    scene: 'Agent / Skills / AI 工具一周一个版本，跟不赢。',
+    promise: '每日 / 每周早报自动整理，自动加书签。',
+  },
+];
+---
+
+<BaseLayout title="愿景" description="我们为什么做 KCHub——把零散的家庭数字生活织成一张能自我修复的网。">
+  <Section
+    eyebrow="Vision"
+    title="为什么要做 KCHub？"
+    subtitle="我们发现家里数字生活的真相：想法满天飞，执行跟不上；资料到处散，需要时找不到；评论只能憋着，没法反推改进。所以——"
+  >
+    <div
+      class="mt-12 max-w-3xl mx-auto p-8 sm:p-10 rounded-[var(--radius-xl)] bg-gradient-to-br from-[color:var(--color-cream-50)] to-[color:var(--color-cream-200)] border border-[color:var(--color-line-200)] shadow-[var(--shadow-warm)]"
+    >
+      <p class="text-xl sm:text-2xl leading-relaxed text-[color:var(--color-ink-200)] text-center font-medium">
+        把"提需求 → 调研 → 产出 → 反馈 → 修复"<br
+          class="hidden sm:block"
+        />变成一个<span class="text-warm-gradient font-semibold">自我循环的小宇宙</span>。
+      </p>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Scenes"
+    title="我们想象 KCHub 能解决的六个真实场景"
+    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
+  >
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        scenes.map((s) => (
+          <article class="card-warm rounded-[var(--radius-lg)] p-6 sm:p-7 flex gap-4">
+            <div class="text-3xl shrink-0 w-12 h-12 grid place-items-center rounded-[var(--radius-md)] bg-[color:var(--color-cream-200)]">
+              {s.icon}
+            </div>
+            <div>
+              <h3 class="font-semibold text-[color:var(--color-ink-300)] mb-1.5">{s.title}</h3>
+              <p class="text-sm text-[color:var(--color-ink-50)] leading-relaxed mb-2">
+                <span class="text-[color:var(--color-ink-100)]">现实：</span>{s.scene}
+              </p>
+              <p class="text-sm text-[color:var(--color-ink-100)] leading-relaxed">
+                <span class="text-[color:var(--color-peach-500)] font-medium">KCHub：</span>{s.promise}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section eyebrow="Principles" title="我们坚持的几个原则" align="center">
+    <div class="mt-12 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto text-left">
+      {
+        [
+          { t: '数据有主人', d: 'Kang 的归 Kang，Chen 的归 Chen，互不打扰，需要时再共享。' },
+          { t: '轻优先于重', d: '先跑起来一个能用的最小版本，再迭代，绝不一次性堆功能。' },
+          { t: '能跑就行', d: '能用 80 分的工具先上，不追求完美架构——家里的工程不必大而全。' },
+        ].map((p) => (
+          <div class="p-6 rounded-[var(--radius-md)] border border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
+            <h3 class="font-semibold text-[color:var(--color-ink-300)] mb-2">{p.t}</h3>
+            <p class="text-sm text-[color:var(--color-ink-50)] leading-relaxed">{p.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- 家庭小屋 + 心形 信号波：KCHub logo -->
+  <defs>
+    <linearGradient id="warm" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8A87C"/>
+      <stop offset="1" stop-color="#C38D9E"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#FAF7F2"/>
+  <!-- 屋顶 -->
+  <path d="M14 32 L32 16 L50 32" stroke="url(#warm)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 房身 -->
+  <rect x="18" y="32" width="28" height="18" rx="2" stroke="url(#warm)" stroke-width="3" fill="none"/>
+  <!-- 心形信号点 -->
+  <circle cx="32" cy="41" r="2.5" fill="url(#warm)"/>
+  <!-- 信号波 -->
+  <path d="M24 41 Q32 33 40 41" stroke="url(#warm)" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.55"/>
+  <path d="M20 41 Q32 28 44 41" stroke="url(#warm)" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.3"/>
+</svg>

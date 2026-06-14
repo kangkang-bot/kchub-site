@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+---
+
+<BaseLayout
+  title="关于"
+  description="关于 KCHub 的两位主理人——Kang & Chen。"
+>
+  <Section
+    eyebrow="About"
+    title="两个普通人，搭一个自己的家"
+    subtitle="KCHub 不是产品，是项目。是两个想偷懒又有点小执念的人，给自己的家盖的一间小工具房。"
+  >
+    <div class="mt-12 grid gap-6 lg:grid-cols-2 max-w-4xl mx-auto">
+      <article
+        class="card-warm rounded-[var(--radius-xl)] p-7 sm:p-8 bg-gradient-to-br from-[color:var(--color-cream-50)] to-[color:var(--color-cream-200)]"
+      >
+        <div class="flex items-center gap-4 mb-5">
+          <div
+            class="w-16 h-16 rounded-full grid place-items-center text-2xl bg-gradient-to-br from-[color:var(--color-peach-400)] to-[color:var(--color-rose-400)] text-white shadow-[var(--shadow-warm)]"
+          >
+            🧑‍💻
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-[color:var(--color-ink-300)]">Kang</h3>
+            <p class="text-xs text-[color:var(--color-peach-500)] font-mono">主理人 · 后端 / Agent</p>
+          </div>
+        </div>
+        <p class="text-sm text-[color:var(--color-ink-100)] leading-relaxed mb-3">
+          互联网技术开发，常驻杭州。写代码、玩 Agent、追行业趋势。研究如何让 AI 不只是工具，而是家里的一员。
+        </p>
+        <p class="text-sm text-[color:var(--color-ink-50)] leading-relaxed">
+          折腾 OpenClaw、OpenCode、Claude Code、Skills 系统……大部分夜晚都在和 Agent 聊天。
+        </p>
+      </article>
+
+      <article
+        class="card-warm rounded-[var(--radius-xl)] p-7 sm:p-8 bg-gradient-to-br from-[color:var(--color-cream-50)] to-[color:var(--color-cream-200)]"
+      >
+        <div class="flex items-center gap-4 mb-5">
+          <div
+            class="w-16 h-16 rounded-full grid place-items-center text-2xl bg-gradient-to-br from-[color:var(--color-rose-300)] to-[color:var(--color-peach-400)] text-white shadow-[var(--shadow-warm)]"
+          >
+            🌸
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-[color:var(--color-ink-300)]">Chen</h3>
+            <p class="text-xs text-[color:var(--color-rose-500)] font-mono">主理人 · 体验 / 内容</p>
+          </div>
+        </div>
+        <p class="text-sm text-[color:var(--color-ink-100)] leading-relaxed mb-3">
+          设计师 / 内容创作者。家里最挑剔的"用户"——任何不合理的交互、不通顺的文案、不好看的颜色都逃不过她的眼。
+        </p>
+        <p class="text-sm text-[color:var(--color-ink-50)] leading-relaxed">
+          也是 KCHub 最大的"评论员"——每一份报告的修复按钮，最常被她的"Day3 走太多路了吧"点亮。
+        </p>
+      </article>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Stack"
+    title="用到的技术"
+    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
+  >
+    <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto text-sm">
+      {
+        [
+          { k: 'AI Agent 框架', v: 'OpenClaw / OpenCode / Claude Code' },
+          { k: 'Skill 系统', v: 'Markdown 工作流（受 DeerFlow 2.0 启发）' },
+          { k: '执行环境', v: 'Mac mini 常驻进程' },
+          { k: '客户端', v: '微信小程序（KCHub Mini）· Web' },
+          { k: '数据存储', v: '本地 SQLite / Markdown 笔记' },
+          { k: '官网', v: 'Astro 5 · Tailwind CSS 4 · Cloudflare Pages' },
+        ].map((s) => (
+          <div class="p-4 rounded-[var(--radius-md)] border border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
+            <p class="text-xs font-mono text-[color:var(--color-peach-500)] mb-1">{s.k}</p>
+            <p class="text-[color:var(--color-ink-200)]">{s.v}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section eyebrow="License" title="这个项目是开源的" align="center">
+    <p class="max-w-xl mx-auto text-[color:var(--color-ink-50)] leading-relaxed">
+      KCHub 是一份家庭手作，欢迎取用、改造、重新搭建。<br
+        class="hidden sm:block"
+      />完整代码之后会开源到 GitHub。
+    </p>
+    <div class="mt-8">
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium bg-[color:var(--color-ink-200)] text-[color:var(--color-cream-50)] hover:bg-[color:var(--color-peach-500)] transition-colors"
+      >
+        想说点什么 →
+      </a>
+    </div>
+  </Section>
+</BaseLayout>

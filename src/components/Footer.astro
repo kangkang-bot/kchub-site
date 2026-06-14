@@ -1,0 +1,56 @@
+---
+import { SITE } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12 grid gap-10 md:grid-cols-3">
+    <div>
+      <div class="flex items-center gap-2.5 mb-3">
+        <span
+          class="w-8 h-8 rounded-[var(--radius-sm)] bg-gradient-to-br from-[color:var(--color-peach-400)] to-[color:var(--color-rose-400)] grid place-items-center"
+        >
+          <svg viewBox="0 0 24 24" class="w-4.5 h-4.5" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 11 L12 4 L20 11" />
+            <path d="M6 11 V19 H18 V11" />
+            <path d="M10 19 V14 H14 V19" />
+          </svg>
+        </span>
+        <span class="font-semibold text-[color:var(--color-ink-300)]">KCHub</span>
+      </div>
+      <p class="text-sm text-[color:var(--color-ink-50)] max-w-xs leading-relaxed">
+        {SITE.description}
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-[color:var(--color-ink-300)] mb-3">探索</h4>
+      <ul class="space-y-2 text-sm text-[color:var(--color-ink-50)]">
+        <li><a class="link-warm" href="/vision">愿景</a></li>
+        <li><a class="link-warm" href="/capabilities">能力</a></li>
+        <li><a class="link-warm" href="/architecture">架构</a></li>
+        <li><a class="link-warm" href="/roadmap">路线图</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-[color:var(--color-ink-300)] mb-3">联系</h4>
+      <ul class="space-y-2 text-sm text-[color:var(--color-ink-50)]">
+        <li>
+          <a class="link-warm" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </li>
+        <li><a class="link-warm" href="/contact">留言板</a></li>
+        <li><a class="link-warm" href="/about">关于 Kang &amp; Chen</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-[color:var(--color-line-100)]">
+    <div
+      class="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs text-[color:var(--color-ink-50)]"
+    >
+      <p>© {year} {SITE.author} · 用 ☕ 和 🤖 搭建</p>
+      <p>Built with <a class="link-warm" href="https://astro.build">Astro</a> · Hosted on Cloudflare Pages</p>
+    </div>
+  </div>
+</footer>

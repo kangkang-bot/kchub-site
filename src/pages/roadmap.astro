@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+
+const phases = [
+  {
+    status: 'doing',
+    period: '2026 Q2',
+    title: '重启：KCHub Mini · 小程序版',
+    items: [
+      '确定小程序平台（微信 / 抖音 / 支付宝，待选）',
+      '小程序 + 家庭电脑 webhook 派单链路打通',
+      '核心 Skills：搜索 / 写作 / HTML 模板',
+      '调研类报告闭环（生成 → 推送 → 阅读）',
+    ],
+  },
+  {
+    status: 'next',
+    period: '2026 Q3',
+    title: '闭环：评论 + 修复 + 多人协作',
+    items: [
+      '侧栏评论 + 一键让 Agent 改稿',
+      'Kang / Chen 双人数据沙箱 + 共享层',
+      'Skills 市场雏形：自写 / 导入 / 分享',
+      '把官方报告挂到 kchub.cn',
+    ],
+  },
+  {
+    status: 'later',
+    period: '2026 Q4',
+    title: '扩展：家庭记忆 + 智能提醒',
+    items: [
+      '家庭相册智能分类',
+      '纪念日 / 节日自动推送 + 回忆杀',
+      '可订阅的家庭 newsletter（给爸妈）',
+      'iOS / Android 原生 App 实验',
+    ],
+  },
+  {
+    status: 'future',
+    period: '2027+',
+    title: '成熟：自托管 + 插件生态',
+    items: [
+      'Docker 一键自托管套件',
+      'Skills 插件市场 + 社区贡献',
+      '多 Agent 协同（子代理分工）',
+      '与 Calendar / Email / 银行 API 打通',
+    ],
+  },
+];
+
+const statusMap: Record<string, { label: string; class: string; dot: string }> = {
+  doing: { label: '进行中', class: 'bg-[color:var(--color-peach-400)]/15 text-[color:var(--color-peach-500)]', dot: 'bg-[color:var(--color-peach-400)] animate-breathe' },
+  next: { label: '接下来', class: 'bg-[color:var(--color-rose-300)]/15 text-[color:var(--color-rose-500)]', dot: 'bg-[color:var(--color-rose-400)]' },
+  later: { label: '以后', class: 'bg-[color:var(--color-cream-300)] text-[color:var(--color-ink-50)]', dot: 'bg-[color:var(--color-cream-400)]' },
+  future: { label: '未来', class: 'bg-[color:var(--color-cream-200)] text-[color:var(--color-ink-50)]', dot: 'bg-[color:var(--color-line-200)]' },
+};
+---
+
+<BaseLayout title="路线图" description="KCHub 的开发路线图——分阶段构建一个能自我修复的家庭数字中枢。">
+  <Section
+    eyebrow="Roadmap"
+    title="我们的路线图"
+    subtitle="不在 30 天做完所有事。每一步都要能跑起来给家里用。"
+  >
+    <div class="mt-12 max-w-4xl mx-auto space-y-6">
+      {
+        phases.map((p) => {
+          const meta = statusMap[p.status];
+          return (
+            <article class="card-warm rounded-[var(--radius-lg)] p-6 sm:p-8">
+              <header class="flex flex-wrap items-center gap-3 mb-4">
+                <span class:list={["inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full", meta.class]}>
+                  <span class:list={["w-1.5 h-1.5 rounded-full", meta.dot]}></span>
+                  {meta.label}
+                </span>
+                <span class="text-xs font-mono text-[color:var(--color-ink-50)]">{p.period}</span>
+              </header>
+              <h3 class="text-xl font-semibold text-[color:var(--color-ink-300)] mb-3">{p.title}</h3>
+              <ul class="space-y-2 text-sm text-[color:var(--color-ink-100)] leading-relaxed">
+                {p.items.map((it) => (
+                  <li class="flex gap-3 items-start">
+                    <span class="text-[color:var(--color-peach-400)] mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-current"></span>
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })
+      }
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Changelog"
+    title="最近的更新"
+    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
+    align="center"
+  >
+    <div class="mt-10 max-w-2xl mx-auto text-left space-y-3">
+      {
+        [
+          { d: '2026-06-14', t: '搭建 kchub.cn 官网（v0.1）', x: 'Astro + Tailwind · 浅暖色调 · 7 个页面' },
+          { d: '2026-06-12', t: 'KCHub v2 Mini 启动', x: '小程序版取代归档的 v1 iOS/Web' },
+          { d: '2026-06-11', t: 'KCHub v1 永久归档', x: 'iOS + Web + Python/FastAPI + SQLite' },
+        ].map((c) => (
+          <div class="flex gap-4 items-baseline p-4 rounded-[var(--radius-md)] border border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
+            <span class="font-mono text-xs text-[color:var(--color-peach-500)] shrink-0">{c.d}</span>
+            <div>
+              <p class="font-medium text-[color:var(--color-ink-300)] text-sm">{c.t}</p>
+              <p class="text-xs text-[color:var(--color-ink-50)]">{c.x}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

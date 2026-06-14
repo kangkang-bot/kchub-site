@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { SITE } from '../consts';
+---
+
+<BaseLayout
+  title="留言"
+  description="给 KCHub 留言——想法、纠错、合作，都欢迎。"
+>
+  <Section
+    eyebrow="Contact"
+    title="想说点什么？"
+    subtitle="想聊、想纠错、想合作、想提 bug——挑你最顺手的方式。"
+  >
+    <div class="mt-12 grid gap-6 lg:grid-cols-2 max-w-4xl mx-auto">
+      <!-- 联系方式 -->
+      <div class="space-y-3">
+        {
+          [
+            { icon: '✉️', t: '邮件', v: SITE.email, href: `mailto:${SITE.email}`, hint: '最快回复' },
+            { icon: '💬', t: '微信', v: '搜索 ID：kchub-dev', hint: '备注"KCHub"' },
+            { icon: '🐙', t: 'GitHub', v: 'github.com/kang-chen/kchub', hint: '开源后会贴上' },
+            { icon: '🌐', t: '域名', v: SITE.url, href: SITE.url, hint: '官网同址' },
+          ].map((c) => (
+            <a
+              href={c.href || '#'}
+              class:list={[
+                'card-warm rounded-[var(--radius-md)] p-5 flex items-center gap-4 transition-colors',
+                c.href ? 'hover:bg-[color:var(--color-cream-200)]/60' : 'cursor-default',
+              ]}
+            >
+              <div class="w-11 h-11 rounded-[var(--radius-sm)] grid place-items-center bg-[color:var(--color-cream-200)] text-xl shrink-0">
+                {c.icon}
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs text-[color:var(--color-ink-50)]">{c.t}</p>
+                <p class="font-medium text-[color:var(--color-ink-300)] truncate">{c.v}</p>
+              </div>
+              <span class="text-[10px] text-[color:var(--color-peach-500)] font-mono shrink-0">{c.hint}</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- 留言表单（前端 mock，正式接入后端待定） -->
+      <form
+        class="card-warm rounded-[var(--radius-lg)] p-6 sm:p-7 space-y-4"
+        id="contact-form"
+        novalidate
+      >
+        <h3 class="text-lg font-semibold text-[color:var(--color-ink-300)] mb-2">直接留言</h3>
+        <div>
+          <label class="block text-xs font-medium text-[color:var(--color-ink-100)] mb-1.5">怎么称呼你</label>
+          <input
+            name="name"
+            type="text"
+            required
+            placeholder="昵称 / 真名都行"
+            class="w-full px-3.5 py-2.5 rounded-[var(--radius-sm)] bg-[color:var(--color-cream-50)] border border-[color:var(--color-line-200)] text-sm focus:outline-none focus:border-[color:var(--color-peach-400)] transition-colors"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-[color:var(--color-ink-100)] mb-1.5">邮箱（可选）</label>
+          <input
+            name="email"
+            type="email"
+            placeholder="想收到回复就留下"
+            class="w-full px-3.5 py-2.5 rounded-[var(--radius-sm)] bg-[color:var(--color-cream-50)] border border-[color:var(--color-line-200)] text-sm focus:outline-none focus:border-[color:var(--color-peach-400)] transition-colors"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-[color:var(--color-ink-100)] mb-1.5">想说</label>
+          <textarea
+            name="message"
+            rows="5"
+            required
+            placeholder="建议、问题、合作想法……"
+            class="w-full px-3.5 py-2.5 rounded-[var(--radius-sm)] bg-[color:var(--color-cream-50)] border border-[color:var(--color-line-200)] text-sm focus:outline-none focus:border-[color:var(--color-peach-400)] transition-colors resize-none"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="w-full px-5 py-3 rounded-[var(--radius-sm)] font-medium bg-[color:var(--color-ink-200)] text-[color:var(--color-cream-50)] hover:bg-[color:var(--color-peach-500)] transition-colors"
+        >
+          寄出 →
+        </button>
+        <p
+          id="form-status"
+          class="text-xs text-center text-[color:var(--color-ink-50)] hidden"
+        >
+          谢谢你留言！🧡 暂时还没有接后端，后续会通过家庭电脑 Agent 转发到邮箱。
+        </p>
+      </form>
+    </div>
+  </Section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    status?.classList.remove('hidden');
+    form.reset();
+  });
+</script>

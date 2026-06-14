@@ -1,0 +1,62 @@
+---
+// 通用 Section 容器：eyebrow + title + subtitle + slot
+export interface Props {
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  className?: string;
+  id?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  align = 'left',
+  className = '',
+  id,
+} = Astro.props;
+---
+
+<section id={id} class={`py-16 sm:py-24 ${className}`}>
+  <div
+    class:list={[
+      'max-w-6xl mx-auto px-5 sm:px-8',
+      align === 'center' ? 'text-center' : '',
+    ]}
+  >
+    {
+      eyebrow && (
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[color:var(--color-peach-500)] mb-3">
+          {eyebrow}
+        </p>
+      )
+    }
+    {
+      title && (
+        <h2
+          class:list={[
+            'text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--color-ink-300)]',
+            align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-3xl',
+          ]}
+        >
+          {title}
+        </h2>
+      )
+    }
+    {
+      subtitle && (
+        <p
+          class:list={[
+            'mt-4 text-base sm:text-lg text-[color:var(--color-ink-50)] leading-relaxed',
+            align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-3xl',
+          ]}
+        >
+          {subtitle}
+        </p>
+      )
+    }
+    <slot />
+  </div>
+</section>
