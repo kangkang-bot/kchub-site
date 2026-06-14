@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 · 走丢了" description="你访问的页面不在了">
+  <section class="py-20 sm:py-32">
+    <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center">
+      <p class="text-7xl sm:text-8xl font-semibold text-warm-gradient mb-4">404</p>
+      <h1 class="text-2xl sm:text-3xl font-semibold text-[color:var(--color-ink-300)] mb-3">
+        这一页走丢了
+      </h1>
+      <p class="text-[color:var(--color-ink-50)] mb-8 leading-relaxed">
+        你访问的链接可能已经被搬走，或者从未存在过。<br
+          class="hidden sm:block"
+        />回首页看看？
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium bg-[color:var(--color-ink-200)] text-[color:var(--color-cream-50)] hover:bg-[color:var(--color-peach-500)] transition-colors"
+        >
+          ← 回首页
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium bg-transparent text-[color:var(--color-ink-200)] border border-[color:var(--color-line-200)] hover:border-[color:var(--color-peach-400)]"
+        >
+          报告问题
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
