@@ -7,9 +7,9 @@ import { SITE } from '../consts';
 const capabilities = [
   {
     icon: '🧭',
-    title: '调研 & 攻略 Agent',
+    title: '调研 & 攻略',
     description:
-      '把"想了解 XX 主题"或"想去 XX 玩"的需求交给它。Agent 拆解任务、调用搜索与文档 Skills，最终生成可读、可分享的 HTML 报告。',
+      '把"想了解 XX 主题"或"想去 XX 玩"的需求交给它。它拆解任务、查资料、写报告，最终给你一份能看完的简报。',
     tags: ['Research', 'Report', 'Export'],
   },
   {
@@ -17,34 +17,34 @@ const capabilities = [
     title: '家庭数据中枢',
     description:
       '把日程、待办、纪念日、账本、阅读清单存到一处。所有数据有主人、有边界——Kang 的归 Kang，Chen 的归 Chen。',
-    tags: ['Sandbox', 'Privacy'],
+    tags: ['Isolated', 'Sharing'],
   },
   {
     icon: '💬',
-    title: '评论 & 修复闭环',
+    title: '评论 & 修复',
     description:
-      '在报告旁留下评注，点一下"让 Agent 修"，AI 就回查上下文、改稿、回写——一个会自我修复的小宇宙。',
+      '在报告旁留下评注，点一下"让它改一下"，它就回查上下文、改稿、回写——一个会自我修复的小宇宙。',
     tags: ['Feedback Loop', 'Self-healing'],
   },
   {
     icon: '🪄',
-    title: 'Skills 工具集',
+    title: '小工具积木',
     description:
-      '把"怎么做一件事"沉淀成 Markdown Skills——查天气、追 GitHub 趋势、生成早报、安排约会。Skills 越多，Agent 越能干。',
+      '每一个小功能都是一块独立的积木——查天气、追 GitHub 趋势、生成早报、安排约会。想加新的？加块新积木就行。',
     tags: ['Modular', 'Extensible'],
   },
   {
     icon: '🔐',
-    title: '端到端加密 & 自托管',
+    title: '数据安心',
     description:
-      '数据可以只留在家里那台 Mac mini 上，也可以走云端 Relay。所有外部访问都可以加锁。',
+      '数据可以只留在家里那台 Mac mini 上，也可以走云端。所有外部访问都加密，只有你和我能看。',
     tags: ['Encrypted', 'Private'],
   },
   {
     icon: '📱',
     title: '多端入口',
     description:
-      '小程序、Web、OpenClaw 机器人——在哪儿都能下指令。任务回到家庭电脑执行，结果推回当前设备。',
+      '小程序、Web、机器人——在哪儿都能下指令。任务回到家里那台电脑执行，结果推回当前设备。',
     tags: ['Miniapp', 'Web', 'Bot'],
   },
 ];
@@ -82,7 +82,7 @@ const capabilities = [
         >
           我们的<span class="text-warm-gradient">家庭数字中枢</span>，<br
             class="hidden sm:block"
-          />由 Agent 编织。
+          />由 KCHub 编织。
         </h1>
 
         <p
@@ -127,19 +127,19 @@ const capabilities = [
             <span class="text-[color:var(--color-ink-200)]">"下个月去京都自由行 5 天，预算 1.5 万，做个攻略"</span>
           </div>
           <div class="flex gap-3">
-            <span class="text-[color:var(--color-rose-400)]">Agent →</span>
-            <span class="text-[color:var(--color-ink-100)]">"已派单。Skills 拉取：景点 · 交通 · 住宿 · 餐厅 · 天气。预计 6 分钟出报告。"</span>
+            <span class="text-[color:var(--color-rose-400)]">KCHub →</span>
+            <span class="text-[color:var(--color-ink-100)]">"已接单。准备调取：景点 · 交通 · 住宿 · 餐厅 · 天气。预计 6 分钟出报告。"</span>
           </div>
           <div class="flex gap-3">
             <span class="text-[color:var(--color-ink-50)]">[ 02:14 后 ]</span>
-            <span class="text-[color:var(--color-ink-50)]">报告已生成 → 京都 5 日攻略.html</span>
+            <span class="text-[color:var(--color-ink-50)]">报告已生成 → 京都 5 日攻略</span>
           </div>
           <div class="flex gap-3">
             <span class="text-[color:var(--color-peach-500)]">Chen →</span>
             <span class="text-[color:var(--color-ink-200)]">"Day3 走太多路了吧，重新排一下"</span>
           </div>
           <div class="flex gap-3">
-            <span class="text-[color:var(--color-rose-400)]">Agent →</span>
+            <span class="text-[color:var(--color-rose-400)]">KCHub →</span>
             <span class="text-[color:var(--color-ink-100)]">"收到，重新平衡 Day3 步行强度 ↻"</span>
           </div>
         </div>
@@ -174,10 +174,10 @@ const capabilities = [
         </div>
 
         {[
-          { n: '01', t: '提需求', d: '小程序 / Web / OpenClaw 对话' },
-          { n: '02', t: '派单到家庭电脑', d: 'Webhook 唤起本地 Agent' },
-          { n: '03', t: 'Agent + Skills', d: '调研、写作、生成 HTML' },
-          { n: '04', t: '回传 + 评论修复', d: '报告上墙 · 评注触发改稿' },
+          { n: '01', t: '提需求', d: '小程序 / Web / 机器人对话' },
+          { n: '02', t: '任务到家里那台电脑', d: '它醒过来开始干活' },
+          { n: '03', t: '查资料 + 写报告', d: '调研、写作、排版' },
+          { n: '04', t: '报告回到你手里', d: '可以评注 · 可以让它改' },
         ].map((s) => (
           <li class="relative">
             <div
