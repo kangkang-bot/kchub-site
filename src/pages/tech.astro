@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+
+const stack = [
+  {
+    layer: '01',
+    title: '客户端层',
+    subtitle: '多端入口',
+    items: [
+      { name: '微信小程序', desc: '最常被打开的入口 · 移动优先' },
+      { name: 'Web 网页', desc: '深度阅读 · 报告评论 · 修复触发' },
+      { name: 'OpenClaw 机器人', desc: '微信 / Web 端对话触发任务' },
+    ],
+  },
+  {
+    layer: '02',
+    title: '触发层',
+    subtitle: '任务入口',
+    items: [
+      { name: '小程序 API', desc: '从微信小程序 POST 到家庭电脑' },
+      { name: 'Webhook', desc: '派单到本地 Agent' },
+      { name: 'Bot 对话转任务', desc: 'OpenClaw 把自然语言拆成结构化任务' },
+    ],
+  },
+  {
+    layer: '03',
+    title: 'Agent 编排层',
+    subtitle: '核心大脑',
+    items: [
+      { name: 'OpenClaw', desc: '主调度 Agent · 处理日常对话与派单' },
+      { name: 'OpenCode', desc: '辅助 coding 任务' },
+      { name: 'Claude Code', desc: '复杂任务主力 · 深度分析与多步操作' },
+    ],
+  },
+  {
+    layer: '04',
+    title: 'Skills 系统',
+    subtitle: '可复用的「做事方式」',
+    items: [
+      { name: 'Markdown 工作流', desc: '受 DeerFlow 2.0 启发 · 把"怎么做"写成文档' },
+      { name: '搜索 / 抓取', desc: '拉资料、聚合评论' },
+      { name: '写作 / 模板', desc: '起草、套版式、出报告' },
+      { name: '记忆 / 上下文', desc: '让 Agent 知道我们是谁、喜欢什么' },
+    ],
+  },
+  {
+    layer: '05',
+    title: '数据与产出',
+    subtitle: '留得住 · 找得到',
+    items: [
+      { name: '本地 SQLite', desc: '结构化数据 · 日程 / 待办 / 账本' },
+      { name: 'Markdown 笔记库', desc: '非结构化记忆 · 灵感 / 回忆' },
+      { name: 'HTML 报告', desc: '可分享 · 可打印 · 留版本' },
+    ],
+  },
+  {
+    layer: '06',
+    title: '本官网',
+    subtitle: '你正在看的这个网站',
+    items: [
+      { name: 'Astro 5', desc: '内容型官网 · 零 JS 默认 · SEO 满分' },
+      { name: 'Tailwind CSS 4', desc: '样式系统 · 浅暖色调主题' },
+      { name: 'TypeScript', desc: '类型安全' },
+      { name: 'Cloudflare Pages', desc: '静态托管 · 全球 CDN · HTTPS' },
+      { name: 'GitHub', desc: '代码托管 · push 即自动部署' },
+    ],
+  },
+];
+
+const principles = [
+  { t: '能跑就行', d: '80 分的工具先上 · 不追求完美架构' },
+  { t: 'Skill 是 Markdown', d: '和写文档一样 · 可读 · 可版本控制 · 可分享' },
+  { t: 'Agent 决定怎么用', d: '我们不写死流程 · 让 Agent 自己挑 Skill' },
+  { t: '本地优先', d: '数据留家里那台 Mac mini · 出门走加密' },
+  { t: '失败可重试', d: '每步有快照 · 出问题能回去重来' },
+];
+---
+
+<BaseLayout
+  title="技术"
+  description="KCHub 的技术栈与选型理由——能跑就行，不为炫技。"
+>
+  <Section
+    eyebrow="Tech Stack"
+    title="KCHub 用了什么技术"
+    subtitle="选技术只有一个标准：能跑起来、好维护、不复杂。技术是为产品服务的，不是炫技。"
+  >
+    <div class="mt-14 max-w-4xl mx-auto space-y-5">
+      {
+        stack.map((s) => (
+          <article class="card-warm rounded-[var(--radius-lg)] p-6 sm:p-7">
+            <header class="flex flex-wrap items-baseline gap-3 mb-4">
+              <span class="font-mono text-xs text-[color:var(--color-peach-500)]">{s.layer}</span>
+              <h3 class="text-lg sm:text-xl font-semibold text-[color:var(--color-ink-300)]">{s.title}</h3>
+              <span class="text-xs text-[color:var(--color-ink-50)]">· {s.subtitle}</span>
+            </header>
+            <div class="grid gap-3 sm:grid-cols-2">
+              {s.items.map((it) => (
+                <div class="rounded-[var(--radius-sm)] bg-[color:var(--color-cream-50)] p-3.5 border border-[color:var(--color-line-100)]">
+                  <p class="font-medium text-[color:var(--color-ink-300)] text-sm mb-1">{it.name}</p>
+                  <p class="text-xs text-[color:var(--color-ink-50)] leading-relaxed">{it.desc}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Principles"
+    title="我们坚持的几个原则"
+    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
+  >
+    <div class="mt-10 max-w-3xl mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        principles.map((p) => (
+          <div class="p-5 rounded-[var(--radius-md)] border border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
+            <h3 class="font-semibold text-[color:var(--color-ink-300)] mb-1.5 text-sm">{p.t}</h3>
+            <p class="text-xs text-[color:var(--color-ink-50)] leading-relaxed">{p.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section eyebrow="Inspiration" title="我们站在谁的肩膀上" align="center">
+    <p class="max-w-2xl mx-auto text-[color:var(--color-ink-50)] leading-relaxed text-sm">
+      KCHub 的 Skills 系统、Sub-Agent 编排、Markdown 工作流的思路，<br
+        class="hidden sm:block"
+      />很大程度上受 <a class="text-warm-gradient font-medium" href="https://github.com/bytedance/deer-flow" rel="noopener" target="_blank">DeerFlow 2.0</a> 启发。<br
+        class="hidden sm:block"
+      />感谢开源。
+    </p>
+  </Section>
+</BaseLayout>

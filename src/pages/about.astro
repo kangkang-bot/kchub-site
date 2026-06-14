@@ -59,30 +59,6 @@ import Section from '../components/Section.astro';
     </div>
   </Section>
 
-  <Section
-    eyebrow="Stack"
-    title="用到的技术"
-    className="bg-[color:var(--color-cream-50)] border-y border-[color:var(--color-line-200)]"
-  >
-    <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto text-sm">
-      {
-        [
-          { k: 'AI Agent 框架', v: 'OpenClaw / OpenCode / Claude Code' },
-          { k: 'Skill 系统', v: 'Markdown 工作流（受 DeerFlow 2.0 启发）' },
-          { k: '执行环境', v: 'Mac mini 常驻进程' },
-          { k: '客户端', v: '微信小程序（KCHub Mini）· Web' },
-          { k: '数据存储', v: '本地 SQLite / Markdown 笔记' },
-          { k: '官网', v: 'Astro 5 · Tailwind CSS 4 · Cloudflare Pages' },
-        ].map((s) => (
-          <div class="p-4 rounded-[var(--radius-md)] border border-[color:var(--color-line-200)] bg-[color:var(--color-cream-50)]">
-            <p class="text-xs font-mono text-[color:var(--color-peach-500)] mb-1">{s.k}</p>
-            <p class="text-[color:var(--color-ink-200)]">{s.v}</p>
-          </div>
-        ))
-      }
-    </div>
-  </Section>
-
   <Section eyebrow="License" title="这个项目是开源的" align="center">
     <p class="max-w-xl mx-auto text-[color:var(--color-ink-50)] leading-relaxed">
       KCHub 是一份家庭手作，欢迎取用、改造、重新搭建。<br

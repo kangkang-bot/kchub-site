@@ -16,6 +16,7 @@ export const NAV = [
   { label: '愿景', href: '/vision' },
   { label: '能力', href: '/capabilities' },
   { label: '架构', href: '/architecture' },
+  { label: '技术', href: '/tech' },
   { label: '路线图', href: '/roadmap' },
   { label: '关于', href: '/about' },
   { label: '留言', href: '/contact' },

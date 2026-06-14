@@ -102,10 +102,10 @@ const layers = [
     <div class="mt-10 max-w-3xl mx-auto grid gap-4 sm:grid-cols-2 text-left">
       {
         [
-          { t: 'Skill 是 Markdown', d: '和写文档一样写一个 Skill，AI 立刻能跑。可读、可版本控制、可分享。' },
-          { t: 'Agent 决定怎么用', d: '我们不写死流程，让 Agent 自己挑 Skill、自己拆任务。' },
-          { t: '本地优先', d: '数据都留家里那台 Mac mini，出门访问走加密通道。' },
-          { t: '失败可重试', d: '每个步骤都有上下文快照，出问题能回去重来。' },
+          { t: '能拆能换', d: '每个能力都是一个独立的小模块，好用就保留，不好用就拆掉重写。' },
+          { t: '让 Agent 自己拆任务', d: '我们不写死流程，提需求、怎么干、中间怎么调整，都让 Agent 现场决定。' },
+          { t: '数据留在家里', d: '日程、待办、纪念日都留家里那台 Mac mini，出门访问走加密通道。' },
+          { t: '失败能回头', d: '每一步都有上下文快照，出问题可以从任意一步重试，不会从头来过。' },
         ].map((b) => (
           <div class="p-5 rounded-[var(--radius-md)] bg-[color:var(--color-cream-50)] border border-[color:var(--color-line-200)]">
             <h3 class="font-semibold text-[color:var(--color-ink-300)] mb-1.5">{b.t}</h3>

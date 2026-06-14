@@ -7,6 +7,7 @@ const PAGES = [
   { path: '/vision', name: 'vision' },
   { path: '/capabilities', name: 'capabilities' },
   { path: '/architecture', name: 'architecture' },
+  { path: '/tech', name: 'tech' },
   { path: '/roadmap', name: 'roadmap' },
   { path: '/about', name: 'about' },
   { path: '/contact', name: 'contact' },
